@@ -1,0 +1,84 @@
+The driver supports for MenuetOS ver. 0.74
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+This is the sample model for supports driver at MeOS (0.74).
+All supporting code situated in two INC-files:
+VMODELD.INC - driver loading in memory
+VMODEINT.INC - redirect from int40h to driver
+
+The kernel code modification have _ONLY_ 3(three) string
+in KERNEL.ASM   _MARKED_ as 
+"; !!!!!!!!!!!!!!!!!!!!!!! ...
+  <added code string>
+ ; !!!!!!!!!!!!!!!!!!!!!!! ..."
+
+The driver supports not infuence on system work. The system
+may work without driver-file. But if your system have driver-file
+you take more functionality.
+
+Main idea:
+~~~~~~~~~~~~
+Provide of operating hardware possibility to applications. 
+It's not needing recompile OS kernel every time then will be 
+added driver functionality. Only change driver file. And no
+increment of kernel size.
+
+If driver load by system boot (hardware operating):
+                             |
+                Kernel   |          Ring3
+                          Int40h
+    SYSTEM   <==|===>  APPLICATION 
+         ^                  |
+------ |------------|
+     Redirect           |
+          |                  |
+         v                  |
+      Driver             |
+         ^  Sys.Area  |
+------ |------------|
+         v                  |
+ HARDWARE      |
+                             |
+
+
+If driver not present in system (no hardware operating):
+                             |
+                Kernel   |          Ring3
+                          Int40h
+    SYSTEM   <==|===>  APPLICATION 
+         ^                  |
+------ |------------|
+     Redirect           |
+          |                  |
+         v                  |
+       Return           |
+            Sys.Area  |
+-------------------|
+                             |
+ HARDWARE      |
+                             |
+
+
+
+
+Compile:
+~~~~~~~~~~~~~~
+Unpack KERNEL.ZIP (source of kernel MenuetOS).
+Include the VMODELD.INC and the VMODEINT.INC
+in this directory and make modification KERNEL.ASM
+as present example (see of kernel .asm in this archive).
+After that compile OS kernel:
+
+   fasm kernel.asm kernel.mnt
+
+Change old kernel by new kernel and that's all. System
+ready for use driver.
+
+You may test what system work without driver without
+any collisins. For example, you may use of VRR utilite 
+with support work with driver.
+
+
+Trans.
+
+transafe@rambler.ru
+trans397@yahoo.com

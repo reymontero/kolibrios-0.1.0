@@ -1,0 +1,23 @@
+This programs complex provide simple driver model for MenuetOS ver.0.74.
+This system full workable.
+
+kernel_drv_074cr.zip - some little kernel modification with source, binary and doc
+videodrv.zip -  Video driver source and binary
+vrr_2_0.zip -  VRR utilite source and binary, which using system video driver
+
+For test you may complete of following actions:
+1) Unpack all archives
+2) Move new KERNEL.MNT to MenuetOS boot-disk
+3) Move VMODE.MDR to MenuetOS boot-disk
+4) Move VRR to MenuetOS boot-disk
+Booting MenuetOS and start VRR (see using instruction)
+
+Second test:
+1) Remove VMODE.MDR
+Booting MenuetOS and start VRR (see using instruction)
+
+
+Trans.
+
+transafe@rambler.ru
+trans397@yahoo.com
